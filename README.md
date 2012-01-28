@@ -1,4 +1,4 @@
 WebBook
 =======
 
-WebBookÏîÄ¿ÊÇÒ»¸öWebÏîÄ¿£¬ÓÃÓÚÌ½Ë÷ºÍÑÐ·¢»ùÓÚhtml5¼¼ÊõµÄµç×Ó³ö°æÏµÍ³¡£
+WebBooké¡¹ç›®æ˜¯ä¸€ä¸ªWebé¡¹ç›®ï¼Œç”¨äºŽæŽ¢ç´¢å’Œç ”å‘åŸºäºŽhtml5æŠ€æœ¯çš„ç”µå­å‡ºç‰ˆç³»ç»Ÿã€‚
