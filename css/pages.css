@@ -1,0 +1,46 @@
+@CHARSET "utf-8";
+
+body {
+	margin: 0px;
+}
+
+#app {
+	height: 768px;
+	width: 1024px;
+	margin: 0px auto;
+	overflow: hidden;
+}
+
+#content {
+	height: 768px;
+	width: 1024px;
+	position: absolute;
+	overflow: hidden;
+	background-color: rgba(100,0,0,0.1);
+}
+
+/* pages css */
+.pageScroll{
+	height: 768px;
+	width: 1024px;
+/* 	background-color: rgba(0,0,0,0.3); */
+}
+
+.pages{
+	-webkit-transform-style: preserve-3d;
+	height: 768px;
+	top:0px;
+	position: absolute;
+	background-color: rgba(100,200,0,0.8);
+}
+
+.page{
+	height: 768px;
+	width: 1024px;
+	background-color: rgba(0,0,0,0.3);
+	float: left;
+}
+
+.pageContent{
+	font-size: 30em;
+}
