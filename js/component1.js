@@ -81,7 +81,10 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 						'left':-offsetY+'px',
 					});
 				}
-				triggered=!triggered;
+				
+				if(e.originalEvent.targetTouches.length==0){
+					triggered=!triggered;
+				}
 			}
 		});
 		
