@@ -31,37 +31,40 @@ var Pages = function(size, index) {
 				if (e.type == 'touchstart') {
 					pages.moveX = 0;
 					pages.velocity = 0;
-					pages.lastX = e.originalEvent.touches[0].pageX;
+					pages.lastX = e.originalEvent.targetTouches[0].pageX;
+					pages.touchId=e.originalEvent.targetTouches[0].identifier;
 					
-					console.log('page touch start');
+//					console.log('page touch start');
 				}
-
+				
 				if (e.type == 'touchmove') {
-					console.log('page touch move.');
-					pages.velocity = e.originalEvent.touches[0].pageX
+					
+					if(pages.touchId!=e.originalEvent.targetTouches[0].identifier){
+						return;
+					}
+					
+//					console.log('page touch move.');
+					pages.velocity = e.originalEvent.targetTouches[0].pageX
 							- pages.lastX;
-					pages.moveX += e.originalEvent.touches[0].pageX
+					pages.moveX += e.originalEvent.targetTouches[0].pageX
 							- pages.lastX;
 					$(pages).css(
 							'-webkit-transform',
 							'translate3d('
 									+ (pages.moveX + pages.width
 											* (-pages.currentIndex)) + 'px,0,0)');
-				
-//					'-webkit-transform',
-//					'translate('
-//							+ (pages.moveX + pages.width
-//									* (-pages.currentIndex)) + 'px,0)');
 
-					pages.lastX = e.originalEvent.touches[0].pageX;
+					pages.lastX = e.originalEvent.targetTouches[0].pageX;
 				}
 
 				var moveX = 0;
 
 				if (e.type == 'touchend') {
-				
+					if(pages.touchId!=e.originalEvent.changedTouches[0].identifier){
+						return;
+					}
 					if (Math.abs(pages.moveX) > 1024 / 3 || Math.abs(pages.velocity)>2) {
-						console.log('pages touch end index:' + pages.currentIndex);
+//						console.log('pages touch end index:' + pages.currentIndex);
 						if (pages.moveX < 0) {
 							if (pages.currentIndex <= pages.size - 2) {
 								pages.currentIndex++;
@@ -84,13 +87,10 @@ var Pages = function(size, index) {
 				}
 			});
 	
-	$(pages).on('webkitTransitionEnd', function(e) {
-		//video end
-		
+	$(pages).on('webkitTransitionEnd','.pages', function(e) {
 		$(pages).css({
 			'-webkit-transition-duration' : ''
 		});
-		
 		$('#content').trigger('releasePage',[pages.currentIndex]);
 	});
 

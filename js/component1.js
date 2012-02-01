@@ -35,23 +35,27 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 		element.on('touchstart touchmove touchend',function(e){
 			e.preventDefault();
 			
-			if(image.gestureStarted){
-				e.stopPropagation();
-				return;
-			}
-			
 			if (e.type == 'touchstart') {
 				console.log('touch start.');
 				image.moved=false;
+				image.touchId=e.originalEvent.targetTouches[0].identifier;
 				return;
 			}
 			if (e.type == 'touchmove') {
 				console.log('touch move.');
-				image.moved=true;
-				return;
+				
+//				if(e.originalEvent.targetTouches.length==1){
+					image.moved=true;
+					return;
+//				}
+				
+//				e.stopPropagation();
+				
 			}
 			if (e.type == 'touchend') {
-				console.log('touch end.');
+				if(image.touchId!=e.originalEvent.changedTouches[0].identifier){
+					return;
+				}
 				
 				if(!image.moved){
 					if(!image.triggered){
@@ -84,14 +88,14 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			if(e.type=='gesturestart'){
 				element.toggleClass('boxShadow');
 				console.log('gesture start.');
-				image.gestureStarted=true;
 			}
 			if(e.type=='gesturechange'){
 				console.log('gesture change.');
+				image.scale=e.originalEvent.scale;
+				image.rotation=e.originalEvent.rotation;
 			}
 			if(e.type=='gestureend'){
 				element.toggleClass('boxShadow');
-				image.gestureStarted=false;
 			}
 		});
 	});
