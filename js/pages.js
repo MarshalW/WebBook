@@ -35,6 +35,7 @@ var Pages = function(size, index) {
 				}
 
 				if (e.type == 'touchmove') {
+					console.log('page touch move.');
 					pages.velocity = e.originalEvent.touches[0].pageX
 							- pages.lastX;
 					pages.moveX += e.originalEvent.touches[0].pageX
