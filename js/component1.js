@@ -36,21 +36,49 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			e.preventDefault();
 			
 			if (e.type == 'touchstart') {
-				console.log('touch start.');
+//				console.log('touch start.');
 				image.moved=false;
 				image.touchId=e.originalEvent.targetTouches[0].identifier;
 				return;
 			}
 			if (e.type == 'touchmove') {
-				console.log('touch move.');
+//				console.log('touch move.');
+				image.moved=true;
 				
-//				if(e.originalEvent.targetTouches.length==1){
-					image.moved=true;
+				//打开状态不能翻页
+				if(image.triggered){
+					e.stopPropagation();
 					return;
-//				}
+				}
 				
-//				e.stopPropagation();
+				//执行多点移动等交互
+				if(e.originalEvent.targetTouches.length>=2){
+					var touch1=e.originalEvent.targetTouches[0];
+					var touch2=e.originalEvent.targetTouches[1];
+					
+					//取得2点的中点坐标
+					var originX=Math.min(touch1.pageX,touch2.pageX)+Math.abs(touch1.pageX-touch2.pageX);
+					var originY=Math.min(touch1.pageY,touch2.pageY)+Math.abs(touch1.pageY-touch2.pageY);
+					
+					console.log('origin:'+originX+','+originY);
+					
+//					$(element).css(
+//							'-webkit-transform',
+//							'scale('+image.scale+') '+
+//							'rotate('+image.rotation+'deg)'+
+//							'translate3d(' + originX + 'px,' + originY
+//									+ 'px,0)');
+					
+					$(element).css({
+						'-webkit-transform':'scale('+image.scale+') '+
+						'rotate('+image.rotation+'deg)'+
+						'translate3d(' + originX + 'px,' + originY
+								+ 'px,0)',
+						'-webkit-transform-origin':originX+'px '+originY+'px',
+					});
+				}
 				
+				return;
 			}
 			if (e.type == 'touchend') {
 				if(image.touchId!=e.originalEvent.changedTouches[0].identifier){
@@ -87,10 +115,10 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 		element.on('gesturestart gesturechange gestureend',function(e){
 			if(e.type=='gesturestart'){
 				element.toggleClass('boxShadow');
-				console.log('gesture start.');
+//				console.log('gesture start.');
 			}
 			if(e.type=='gesturechange'){
-				console.log('gesture change.');
+//				console.log('gesture change.');
 				image.scale=e.originalEvent.scale;
 				image.rotation=e.originalEvent.rotation;
 			}
