@@ -69,12 +69,14 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 //							'translate3d(' + originX + 'px,' + originY
 //									+ 'px,0)');
 					
+					console.log('---->>>>rotate:'+image.rotation);
+					
 					$(element).css({
 						'-webkit-transform':'scale('+image.scale+') '+
 						'rotate('+image.rotation+'deg)',
 //						+'translate3d(' + (originX/2) + 'px,' + (originY/2)
 //								+ 'px,0)',
-//						'-webkit-transform-origin':'left '+originX+'px top '+originY+'px',
+						'-webkit-transform-origin':'left '+originX+'px top '+originY+'px',
 //						'-webkit-transform-origin':'left top',
 					});
 				}
