@@ -49,7 +49,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				image.moved=true;
 				
 				//打开状态不能翻页
-				if(image.triggered || image.doAction){
+				if(image.triggered){
 					e.stopPropagation();
 					return;
 				}
@@ -57,7 +57,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				//执行多点移动等交互
 				if(e.originalEvent.targetTouches.length>=2){
 					e.stopPropagation();//禁止翻页
-					image.doAction=true;
+//					image.doAction=true;
 					
 					var touch1=e.originalEvent.targetTouches[0];
 					var touch2=e.originalEvent.targetTouches[1];
@@ -162,7 +162,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					});
 				}
 				
-				image.doAction=false;
+//				image.doAction=false;
 				
 			}
 		});
