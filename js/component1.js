@@ -72,7 +72,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					
 //					var originX=touch1.pageX,originY=touch2.pageX;
 					
-					console.log('origin:'+originX+','+originY);
+//					console.log('origin:'+originX+','+originY);
 					
 					if(image.lastX!=0){
 						image.moveX+=originX-image.lastX;
@@ -86,7 +86,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 						'rotate('+image.rotation+'deg)'
 						+'translate3d(' + image.moveX + 'px,' + image.moveY
 								+ 'px,0)',
-						'-webkit-transform-origin':'left '+originX+'px top '+originY+'px',
+						'-webkit-transform-origin':'left '+originX/image.scale+'px top '+originY/image.scale+'px',
 						'-webkit-transition-duration' : '0s',
 //						'-webkit-transform-origin':'left top',
 					});
