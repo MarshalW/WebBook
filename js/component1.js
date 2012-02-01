@@ -84,9 +84,9 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					$(element).css({
 						'-webkit-transform':'scale('+image.scale+') '+
 						'rotate('+image.rotation+'deg)'
-						+'translate3d(' + image.moveX + 'px,' + image.moveY
+						+'translate3d(' + image.moveX/image.scale + 'px,' + image.moveY/image.scale
 								+ 'px,0)',
-						'-webkit-transform-origin':'left '+originX/image.scale+'px top '+originY/image.scale+'px',
+//						'-webkit-transform-origin':'left '+originX/image.scale+'px top '+originY/image.scale+'px',
 						'-webkit-transition-duration' : '0s',
 //						'-webkit-transform-origin':'left top',
 					});
