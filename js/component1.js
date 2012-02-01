@@ -82,6 +82,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 						+'translate3d(' + image.moveX + 'px,' + image.moveY
 								+ 'px,0)',
 						'-webkit-transform-origin':'left '+originX+'px top '+originY+'px',
+						'-webkit-transition-duration' : '0s',
 //						'-webkit-transform-origin':'left top',
 					});
 					
