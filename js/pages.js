@@ -32,6 +32,8 @@ var Pages = function(size, index) {
 					pages.moveX = 0;
 					pages.velocity = 0;
 					pages.lastX = e.originalEvent.touches[0].pageX;
+					
+					console.log('page touch start');
 				}
 
 				if (e.type == 'touchmove') {
@@ -59,7 +61,7 @@ var Pages = function(size, index) {
 				if (e.type == 'touchend') {
 				
 					if (Math.abs(pages.moveX) > 1024 / 3 || Math.abs(pages.velocity)>2) {
-//						console.log('pages index:' + pages.currentIndex);
+						console.log('pages touch end index:' + pages.currentIndex);
 						if (pages.moveX < 0) {
 							if (pages.currentIndex <= pages.size - 2) {
 								pages.currentIndex++;
