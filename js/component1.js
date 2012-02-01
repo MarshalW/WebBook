@@ -43,10 +43,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					var touch=e.originalEvent.targetTouches[0];
 					var changeTouch=e.originalEvent.targetTouches[1];
 					
-//					console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
-					
 					if(touch.identifier!=changeTouch.identifier){
-//						console.log('>>>>>>gesture id:'+touch.identifier);
 						console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
 					}
 					
@@ -55,6 +52,11 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			}
 			if (e.type == 'touchend') {
 				console.log('touch end.');
+				
+				if(e.originalEvent.targetTouches.length>0){
+					e.stopPropagation();
+					return;
+				}
 				if(image.moved){
 					return;
 				}
