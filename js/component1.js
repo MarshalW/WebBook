@@ -62,8 +62,10 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					var touch2=e.originalEvent.targetTouches[1];
 					
 					//取得2点的中点坐标
-					var originX=Math.min(touch1.pageX,touch2.pageX)+Math.abs(touch1.pageX-touch2.pageX);
-					var originY=Math.min(touch1.pageY,touch2.pageY)+Math.abs(touch1.pageY-touch2.pageY);
+//					var originX=Math.min(touch1.pageX,touch2.pageX)+Math.abs(touch1.pageX-touch2.pageX);
+//					var originY=Math.min(touch1.pageY,touch2.pageY)+Math.abs(touch1.pageY-touch2.pageY);
+					
+					var originX=touch1.pageX,originY=touch2.pageX;
 					
 					console.log('origin:'+originX+','+originY);
 					
