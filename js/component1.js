@@ -72,7 +72,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 						image.moveY+=originY-image.lastY;
 					}
 					
-					console.log('>>>>>moveX:'+image.moveX+',moveY:'+image.moveY);
+//					console.log('>>>>>moveX:'+image.moveX+',moveY:'+image.moveY);
 					
 					$(element).css({
 						'-webkit-transform':'scale('+image.scale+') '+
@@ -132,6 +132,32 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			}
 			if(e.type=='gestureend'){
 				element.toggleClass('boxShadow');
+				
+				if(image.scale>1.2){//放大
+					element.css({
+						'-webkit-transition-duration' : '0.5s',
+						'-webkit-transform':'rotate(0)',
+						'height':height+'px',
+					});
+					$(image).css({
+						'-webkit-transition-duration' : '0.5s',
+						'top':0+'px',
+						'left':0+'px',
+					});
+					image.triggered=true;
+				}else{//还原
+					element.css({
+						'-webkit-transition-duration' : '0.5s',
+						'-webkit-transform':'rotate(0)',
+						'height':elementHeight+'px',
+					});
+					$(image).css({
+						'-webkit-transition-duration' : '0.5s',
+						'top':-offsetX+'px',
+						'left':-offsetY+'px',
+					});
+				}
+				
 			}
 		});
 	});
