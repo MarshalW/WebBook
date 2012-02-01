@@ -71,9 +71,9 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					return;
 				}
 				
-//				if(image.triggered){
+				if(image.triggered){
 					e.stopPropagation();
-//				}
+				}
 				
 				if(!image.triggered){
 					element.css({
