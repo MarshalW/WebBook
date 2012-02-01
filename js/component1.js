@@ -49,15 +49,19 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				image.moved=true;
 				
 				//打开状态不能翻页
-				if(image.triggered){
+				if(image.triggered || image.doAction){
 					e.stopPropagation();
-					return;
+					
+					if(image.triggered){
+						return;
+					}
 				}
+				
+				
 				
 				//执行多点移动等交互
 				if(e.originalEvent.targetTouches.length>=2){
 					e.stopPropagation();//禁止翻页
-//					image.doAction=true;
 					
 					var touch1=e.originalEvent.targetTouches[0];
 					var touch2=e.originalEvent.targetTouches[1];
@@ -133,8 +137,10 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 //				console.log('gesture change.');
 				image.scale=e.originalEvent.scale;
 				image.rotation=e.originalEvent.rotation;
+				image.doAction=true;
 			}
 			if(e.type=='gestureend'){
+				image.doAction=false;
 				element.toggleClass('boxShadow');
 				
 				if(image.scale>1.2){//放大
