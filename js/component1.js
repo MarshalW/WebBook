@@ -32,6 +32,9 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			'left':-offsetY+'px',
 		});
 		
+		image.moveX=0,image.moveY=0;
+		image.lastX=0,image.lastY=0;
+		
 		element.on('touchstart touchmove touchend',function(e){
 			e.preventDefault();
 			
@@ -64,23 +67,23 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					
 					console.log('origin:'+originX+','+originY);
 					
-//					$(element).css(
-//							'-webkit-transform',
-//							'scale('+image.scale+') '+
-//							'rotate('+image.rotation+'deg)'+
-//							'translate3d(' + originX + 'px,' + originY
-//									+ 'px,0)');
+					if(image.lastX!=0){
+						image.moveX+=originX-image.lastX;
+						image.moveY+=originY-image.lastY;
+					}
 					
-					console.log('---->>>>rotate:'+image.rotation);
+					console.log('>>>>>moveX:'+image.moveX+',moveY:'+image.moveY);
 					
 					$(element).css({
 						'-webkit-transform':'scale('+image.scale+') '+
-						'rotate('+image.rotation+'deg)',
-//						+'translate3d(' + (originX/2) + 'px,' + (originY/2)
-//								+ 'px,0)',
+						'rotate('+image.rotation+'deg)'
+						+'translate3d(' + image.moveX + 'px,' + image.moveY
+								+ 'px,0)',
 						'-webkit-transform-origin':'left '+originX+'px top '+originY+'px',
 //						'-webkit-transform-origin':'left top',
 					});
+					
+					image.lastX=originX,image.lastY=originY;
 				}
 				
 				return;
