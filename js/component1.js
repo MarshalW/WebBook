@@ -44,7 +44,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				}
 			}
 			if (e.type == 'touchmove') {
-				onsole.log('touch move.');
+				console.log('touch move.');
 				
 				//如果状态是放大，或者多点移动
 				if(image.triggered || e.originalEvent.targetTouches.length>1){
