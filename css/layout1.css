@@ -1,0 +1,34 @@
+@CHARSET "utf-8";
+.layout1{
+	position:absolute;
+}
+
+
+.layout1-1{
+	width:1024px;
+	height:489px;
+	left:0px;
+	top:0px;
+	position:absolute;
+	overflow:hidden;
+	
+	-webkit-transform-style: preserve-3d;
+}
+
+
+.layout1-2{
+	width:549px;
+	height:143px;
+	left:56px;
+	top:565px;
+	position:absolute;
+}
+
+
+.layout1-3{
+	width:321px;
+	height:176px;
+	left:649px;
+	top:540px;
+	position:absolute;
+}

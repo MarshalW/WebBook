@@ -1,25 +1,6 @@
-var PAGES_CACHE_SIZE=3;
-
 var Page = function(pageIndex) {
 	var that = $('<div class="page"></div>');
-	that.index = pageIndex;
-
-	 that.registePageLoadAction = function() {
-		that.parent().on('pageLoad', function(e,currentIndex) {
-			if(that.index>=currentIndex-PAGES_CACHE_SIZE && that.index<=currentIndex+PAGES_CACHE_SIZE){
-				if(that.is(':empty')){
-					that.load('data/page' + (that.index+1) + '.html');
-					console.log('load it:'+that.index);
-				}
-			}else{
-				if(!that.is(':empty')){
-					that.empty();
-					console.log('empty it:'+that.index);
-				}
-			}
-		});
-	};
-
+	that.load('data/page' + (pageIndex+1) + '.html');
 	return that;
 };
 
@@ -43,10 +24,6 @@ var Pages = function(size, index) {
 				e.preventDefault();
 				e.stopPropagation();
 				
-//				if(e.originalEvent.touches.length>1){
-//					return;
-//				}
-
 				if (e.type == 'touchstart') {
 					pages.moveX = 0;
 					pages.velocity = 0;
@@ -54,6 +31,7 @@ var Pages = function(size, index) {
 				}
 
 				if (e.type == 'touchmove') {
+					
 					pages.velocity = e.originalEvent.touches[0].pageX
 							- pages.lastX;
 					pages.moveX += e.originalEvent.touches[0].pageX
@@ -63,6 +41,7 @@ var Pages = function(size, index) {
 							'translate3d('
 									+ (pages.moveX + pages.width
 											* (-pages.currentIndex)) + 'px,0,0)');
+				
 //					'-webkit-transform',
 //					'translate('
 //							+ (pages.moveX + pages.width
@@ -74,8 +53,9 @@ var Pages = function(size, index) {
 				var moveX = 0;
 
 				if (e.type == 'touchend') {
+				
 					if (Math.abs(pages.moveX) > 1024 / 3 || Math.abs(pages.velocity)>2) {
-						console.log('pages index:' + pages.currentIndex);
+//						console.log('pages index:' + pages.currentIndex);
 						if (pages.moveX < 0) {
 							if (pages.currentIndex <= pages.size - 2) {
 								pages.currentIndex++;
@@ -97,24 +77,25 @@ var Pages = function(size, index) {
 							});
 				}
 			});
-
+	
 	$(pages).on('webkitTransitionEnd', function(e) {
+		//video end
+		
 		$(pages).css({
 			'-webkit-transition-duration' : ''
 		});
-
-		//$(pages).trigger('pageLoad',pages.currentIndex);
-		pages.trigger('pageLoad',pages.currentIndex);
+		
+		$('#content').trigger('releasePage',[pages.currentIndex]);
 	});
 
 	for ( var i = 0; i < pages.size; i++) {
-		Page(i).appendTo(pages).registePageLoadAction();
+		var page=Page(i);
+		page.appendTo(pages);
 	}
 	
-	pages.trigger('pageLoad',pages.currentIndex);
 };
 
 function createPages() {
-	Pages(4, 0);
-	console.log('-->create pages.');
+	Pages(10, 0);
+//	console.log('-->create pages.');
 }

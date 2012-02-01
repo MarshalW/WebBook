@@ -2,6 +2,7 @@
 
 body {
 	margin: 0px;
+	
 }
 
 #app {
@@ -17,30 +18,61 @@ body {
 	position: absolute;
 	overflow: hidden;
 	background-color: rgba(100,0,0,0.1);
+
 }
 
 /* pages css */
 .pageScroll{
 	height: 768px;
 	width: 1024px;
-/* 	background-color: rgba(0,0,0,0.3); */
 }
 
 .pages{
-	-webkit-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d; 
 	height: 768px;
 	top:0px;
-	position: absolute;
-	background-color: rgba(100,200,0,0.8);
+	position: relative; 
 }
 
 .page{
 	height: 768px;
 	width: 1024px;
-	background-color: rgba(0,0,0,0.3);
 	float: left;
+	background-image:url(../images/deepsea.jpg);
 }
 
-.pageContent{
-	font-size: 30em;
+
+/* pageChapter */
+.pageChapter{
+	height: 768px;
+	width: 1024px;
+	background-color: rgba(200, 24, 31, 0.8);
+	text-align:center;
 }
+.pageChapter .enTitle{
+	position:relative;
+	top:353px;
+	font-size: 27px;
+	 font-family: LucidaGrande, sans-serif;  
+}
+.pageChapter .cnTitle{
+	position:relative;
+	top:353px;
+	font-size: 27px;
+	 font-family: ltxhj, sans-serif; 
+}
+
+.blackbookmark{
+	position:absolute;
+	top:732px;;
+	margin-left:20px;
+
+}
+.whitebookmark{
+	position:absolute;
+	top:732px;;
+	margin-left:48px;
+
+}								
+
+

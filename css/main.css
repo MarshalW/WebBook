@@ -1,0 +1,10 @@
+@CHARSET "utf-8";
+@IMPORT url("pages.css");
+@IMPORT url("fonts.css");
+/* @IMPORT url("page2.css"); */
+
+/* 布局 */
+@IMPORT url("layout1.css");
+@IMPORT url("layout2.css");
+/* 组件 */
+@IMPORT url("component1.css");

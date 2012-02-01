@@ -1,0 +1,144 @@
+@CHARSET "utf-8";
+#page2{
+	width:1024px;
+	height:768px;
+	position:absolute;
+}
+.page2_1{
+	width:1024px;
+	height:489px;
+	left:0px;
+	top:0px;
+/* 	position:absolute; */
+	background-image:url(../images/page2imageverybig.jpg);
+	background-size :1024px,489px;
+	-webkit-transform-origin:50% 0%;
+}
+
+.page2_1_1{
+	width:1024px;
+	height:20px;
+	top:469px;
+	position:absolute;
+	background:rgba(0, 0, 0,0.8);
+	color:white;
+	font-size:8px;
+	font-family: ltxhj, sans-serif; 
+	line-height:20px;
+	text-indent:5px;
+	letter-spacing: 1px;
+}
+.page2_1_1_1{
+	float:right;
+}
+
+.page2_2{
+	width:549px;
+	height:133px;
+	left:56px;
+	top:565px;
+	position:absolute;
+	line-height: 18px;
+	color:rgba(46, 46, 46, 1);
+	display:block;
+	letter-spacing: 2px;
+
+}						
+.page2_2_1{
+	position:relative;
+	top:0px;
+	font-size: 15px;
+	font-family: ltchj, sans-serif;  
+	line-height: 18px;
+	letter-spacing: 1px;
+	color:rgba(46, 46, 46, 1);
+	
+}
+/* en title */
+.page2_2_2{
+	position:relative;
+	top:0px;
+	font-size: 13px;
+	font-family: ltchj, sans-serif; 
+	line-height: 18px; 
+	letter-spacing: -0.5px;
+	color:rgba(46, 46, 46, 1);
+	
+}
+.page2_2_3{
+	position:relative;
+	top:2px;
+	font-size: 12px;
+	font-family: ltxhj, sans-serif;  
+	line-height: 18px;
+	letter-spacing: 2px;
+	color:rgba(46, 46, 46, 1);
+	
+}
+.page2_3{
+	width:321px;
+	height:176px;
+	left:649px;
+	top:540px;
+	position:absolute;
+	
+}
+.page2_4{
+	width:321px;
+	height:176px;
+	left:649px;
+	top:540px;
+	position:absolute;
+	background-image:url(../images/page2-vedio1.png); 
+	background-repeat:no-repeat;
+	
+}
+.page2_4_1{
+	position:absolute;
+	top:60px;	
+	left:133px;
+}
+.page2_3_1{
+	display:none;
+}						
+
+#blackbookmark2{
+	position:absolute;
+	top:732px;
+	margin-left:20px;
+
+}
+#littlebookmark2{
+	position:absolute;
+	top:732px;
+	margin-left:48px;
+
+}								
+/* animation */
+.scaleImageForward{
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-duration :  .5s;
+	-webkit-animation-name : scaleImageAnimation;
+}
+
+@-webkit-keyframes scaleImageAnimation{
+	0%{
+	}
+	100%{
+		-webkit-transform: scale(1.6) translate3d(0,0,0);
+		
+	}
+}
+.scaleImageBackward{
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-duration :  .5s;
+	-webkit-animation-name : scaleImageAnimation;
+}
+@-webkit-keyframes scaleImageAnimation2{
+	0%{
+	}
+	100%{
+		-webkit-transform: scale(1) translate3d(0,0,0);
+		
+	}
+}

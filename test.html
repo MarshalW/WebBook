@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cloud Book</title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style"
+	content="black-translucent">
+<style type="text/css">
+body{
+	margin: 0px;
+}
+
+/* .container{ */
+/* 	width:1024px; */
+/* 	height:489px; */
+/* 	left:0px; */
+/* 	top:0px; */
+/* 	position: relative; */
+/* 	-webkit-transform:scale(0.8); */
+/* } */
+
+
+.image{
+	background-image:url("images/page2imageverybig.jpg");
+/*  	background-position:-140px,40px; */
+	background-repeat:no-repeat;
+	width:1024px;
+	height:489px;
+	left:0px;
+	top:100px;
+	position: absolute;
+ 	background-attachment:fixed; 
+}
+
+/* .container:hover{ */
+/* 	-webkit-transition: all .5s ease-in-out; */
+/* 	-webkit-transform:translate3d(0px,50px,0) scale(1); */
+/* } */
+
+.image:hover{
+	background-position:0px,40px;
+	height: 689px;
+ 	top:0px; 
+	-webkit-transition: all .5s ease-in-out;
+/* 	-webkit-transform:translate3d(0px,50px,0) scale(1); */
+}
+
+</style>
+<script src="js/jquery/jquery-1.7.1.js"></script>
+</head>
+<body>
+	<div class='container'>
+		<div class='image'></div>
+	</div>
+
+	<script type="text/javascript">
+		$('.image').on('click',function(){
+			console.log('clicked.');
+		});
+	</script>
+</body>
+</html>

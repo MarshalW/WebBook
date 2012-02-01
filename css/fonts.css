@@ -1,0 +1,17 @@
+@CHARSET "utf-8";
+@font-face {
+	font-family: ltxhj;
+	src: url('../fonts/ltxhj.ttf') format("opentype");
+}
+@font-face {
+	font-family: LucidaGrandeBold;
+	src: url('../fonts/LucidaGrandeBold.ttf') format("opentype");
+}
+@font-face {
+	font-family: LucidaGrande;
+	src: url('../fonts/LucidaGrande.ttf') format("opentype");
+}
+ @font-face {
+	font-family: ltchj;
+	src: url('../fonts/ltchj.ttf') format("opentype");
+}
