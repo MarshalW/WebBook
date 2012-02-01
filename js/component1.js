@@ -29,80 +29,72 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			'left':-offsetY+'px',
 		});
 		
-		element.on('touchstart touchmove touchend',function(e){
-			e.preventDefault();
-			
-			if (e.type == 'touchstart') {
-				image.moved=false;
-			}
-			if (e.type == 'touchmove') {
-				image.moved=true;
-				if(triggered || e.originalEvent.targetTouches.length>1){
-					e.stopPropagation();
-					
-					var touch=e.originalEvent.targetTouches[0];
-					var changeTouch=e.originalEvent.targetTouches[1];
-					
-					if(touch.identifier!=changeTouch.identifier){
-						console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
-					}
-					
-					return;
-				}
-			}
-			if (e.type == 'touchend') {
-				console.log('touch end.');
-				
-				if(e.originalEvent.targetTouches.length>0){
-					e.stopPropagation();
-					return;
-				}
-				if(image.moved){
-					return;
-				}
-				if(!triggered){
-					element.css({
-						'-webkit-transition-duration' : '0.5s',
-						'height':height+'px',
-					});
-					$(image).css({
-						'-webkit-transition-duration' : '0.5s',
-						'top':0+'px',
-						'left':0+'px',
-					});
-				}else{
-					element.css({
-						'-webkit-transition-duration' : '0.5s',
-						'height':elementHeight+'px',
-					});
-					$(image).css({
-						'-webkit-transition-duration' : '0.5s',
-						'top':-offsetX+'px',
-						'left':-offsetY+'px',
-					});
-				}
-				triggered=!triggered;
-			}
-		});
-		
-		element.on('gesturestart gesturechange gestureend',function(e){
-			if(e.type=='gesturestart'){
-				element.toggleClass('boxShadow');
-				console.log('gesture start.');
-			}
-			if(e.type=='gesturechange'){
-//				var touch=e.originalEvent.targetTouches[0];
-//				var changeTouch=e.originalEvent.changedTouches[0];
-				
-//				if(touch.identifier==changeTouch.identifier){
-//					console.log('gesture change: moved');
+//		element.on('touchstart touchmove touchend',function(e){
+//			e.preventDefault();
+//			
+//			if (e.type == 'touchstart') {
+//				image.moved=false;
+//			}
+//			if (e.type == 'touchmove') {
+//				image.moved=true;
+//				if(triggered || e.originalEvent.targetTouches.length>1){
+//					e.stopPropagation();
+//					
+//					var touch=e.originalEvent.targetTouches[0];
+//					var changeTouch=e.originalEvent.targetTouches[1];
+//					
+//					if(touch.identifier!=changeTouch.identifier){
+//						console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
+//					}
+//					
+//					return;
 //				}
-				
-				
-			}
-			if(e.type=='gestureend'){
-				element.toggleClass('boxShadow');
-			}
-		});
+//			}
+//			if (e.type == 'touchend') {
+//				console.log('touch end.');
+//				
+//				if(e.originalEvent.targetTouches.length>0){
+//					e.stopPropagation();
+//					return;
+//				}
+//				if(image.moved){
+//					return;
+//				}
+//				if(!triggered){
+//					element.css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'height':height+'px',
+//					});
+//					$(image).css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'top':0+'px',
+//						'left':0+'px',
+//					});
+//				}else{
+//					element.css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'height':elementHeight+'px',
+//					});
+//					$(image).css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'top':-offsetX+'px',
+//						'left':-offsetY+'px',
+//					});
+//				}
+//				triggered=!triggered;
+//			}
+//		});
+//		
+//		element.on('gesturestart gesturechange gestureend',function(e){
+//			if(e.type=='gesturestart'){
+//				element.toggleClass('boxShadow');
+//				console.log('gesture start.');
+//			}
+//			if(e.type=='gesturechange'){
+//			}
+//			if(e.type=='gestureend'){
+//				element.toggleClass('boxShadow');
+//			}
+//		});
 	});
 }
