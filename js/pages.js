@@ -24,6 +24,10 @@ var Pages = function(size, index) {
 				e.preventDefault();
 				e.stopPropagation();
 				
+				if(e.originalEvent.targetTouches.length>1){
+					return;
+				}
+				
 				if (e.type == 'touchstart') {
 					pages.moveX = 0;
 					pages.velocity = 0;
@@ -31,7 +35,6 @@ var Pages = function(size, index) {
 				}
 
 				if (e.type == 'touchmove') {
-					
 					pages.velocity = e.originalEvent.touches[0].pageX
 							- pages.lastX;
 					pages.moveX += e.originalEvent.touches[0].pageX
