@@ -37,48 +37,48 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			
 			if (e.type == 'touchstart') {
 				console.log('touch start.');
-				
-				//只有当第一次touchstart的时候设置标值位
-				if(e.originalEvent.targetTouches.length==1){
-					image.moved=false;
-				}
+				return;
+//				//只有当第一次touchstart的时候设置标值位
+//				if(e.originalEvent.targetTouches.length==1){
+//					image.moved=false;
+//				}
 			}
 			if (e.type == 'touchmove') {
 				console.log('touch move.');
-				
-				//如果状态是放大，或者多点移动
-				if(image.triggered || e.originalEvent.targetTouches.length>1){
-					e.stopPropagation();
-					
-					if(e.originalEvent.targetTouches.length>1){
-						var touch=e.originalEvent.targetTouches[0];
-						var changeTouch=e.originalEvent.targetTouches[1];
-						
-						if(touch.identifier!=changeTouch.identifier){
-							console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
-						}
-					}
-					return;
-				}
-				
-				image.moved=true;
+				return;
+//				//如果状态是放大，或者多点移动
+//				if(image.triggered || e.originalEvent.targetTouches.length>1){
+//					e.stopPropagation();
+//					
+//					if(e.originalEvent.targetTouches.length>1){
+//						var touch=e.originalEvent.targetTouches[0];
+//						var changeTouch=e.originalEvent.targetTouches[1];
+//						
+//						if(touch.identifier!=changeTouch.identifier){
+//							console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
+//						}
+//					}
+//					return;
+//				}
+//				
+//				image.moved=true;
 			}
 			if (e.type == 'touchend') {
 				console.log('touch end.');
 				
-				if(image.triggered){
-					e.stopPropagation();
-				}
-				
-				//如果已经向下传递过移动，则返回
-				if(image.moved){
-					return;
-				}
-				
-				//多点的end不做处理
-				if(e.originalEvent.targetTouches.length>0){
-					return;
-				}
+//				if(image.triggered){
+//					e.stopPropagation();
+//				}
+//				
+//				//如果已经向下传递过移动，则返回
+//				if(image.moved){
+//					return;
+//				}
+//				
+//				//多点的end不做处理
+//				if(e.originalEvent.targetTouches.length>0){
+//					return;
+//				}
 				
 				if(!image.triggered){
 					element.css({
@@ -102,9 +102,9 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					});
 				}
 				
-				if(e.originalEvent.targetTouches.length==0){
-					image.triggered=!image.triggered;
-				}
+//				if(e.originalEvent.targetTouches.length==0){
+//					image.triggered=!image.triggered;
+//				}
 			}
 		});
 		
