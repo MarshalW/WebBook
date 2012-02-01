@@ -46,7 +46,8 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 //					console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
 					
 					if(touch.identifier!=changeTouch.identifier){
-						console.log('>>>>>>gesture id:'+touch.identifier);
+//						console.log('>>>>>>gesture id:'+touch.identifier);
+						console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
 					}
 					
 					return;
