@@ -66,13 +66,18 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 			if (e.type == 'touchend') {
 				console.log('touch end.');
 				
+				if(image.triggered){
+					e.stopPropagation();
+				}
+				
 				//如果已经向下传递过移动，则返回
 				if(image.moved){
 					return;
 				}
 				
-				if(image.triggered){
-					e.stopPropagation();
+				//多点的end不做处理
+				if(e.originalEvent.targetTouches.length>0){
+					return;
 				}
 				
 				if(!image.triggered){
