@@ -53,6 +53,8 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				
 				//执行多点移动等交互
 				if(e.originalEvent.targetTouches.length>=2){
+					e.stopPropagation();//禁止翻页
+					
 					var touch1=e.originalEvent.targetTouches[0];
 					var touch2=e.originalEvent.targetTouches[1];
 					
