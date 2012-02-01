@@ -80,27 +80,27 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 //					return;
 //				}
 				
-				if(!image.triggered){
-					element.css({
-						'-webkit-transition-duration' : '0.5s',
-						'height':height+'px',
-					});
-					$(image).css({
-						'-webkit-transition-duration' : '0.5s',
-						'top':0+'px',
-						'left':0+'px',
-					});
-				}else{
-					element.css({
-						'-webkit-transition-duration' : '0.5s',
-						'height':elementHeight+'px',
-					});
-					$(image).css({
-						'-webkit-transition-duration' : '0.5s',
-						'top':-offsetX+'px',
-						'left':-offsetY+'px',
-					});
-				}
+//				if(!image.triggered){
+//					element.css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'height':height+'px',
+//					});
+//					$(image).css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'top':0+'px',
+//						'left':0+'px',
+//					});
+//				}else{
+//					element.css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'height':elementHeight+'px',
+//					});
+//					$(image).css({
+//						'-webkit-transition-duration' : '0.5s',
+//						'top':-offsetX+'px',
+//						'left':-offsetY+'px',
+//					});
+//				}
 				
 //				if(e.originalEvent.targetTouches.length==0){
 //					image.triggered=!image.triggered;
