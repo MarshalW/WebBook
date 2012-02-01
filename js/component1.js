@@ -148,7 +148,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 						'top':0+'px',
 						'left':0+'px',
 					});
-					
+					image.triggered=true;
 				}else{//还原
 					element.css({
 						'-webkit-transition-duration' : '0.5s',
@@ -160,8 +160,9 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 						'top':-offsetX+'px',
 						'left':-offsetY+'px',
 					});
+					image.triggered=false;
 				}
-				image.triggered=true;
+				
 				
 			}
 		});
