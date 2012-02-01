@@ -41,7 +41,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					e.stopPropagation();
 					
 					var touch=e.originalEvent.targetTouches[0];
-					var changeTouch=e.originalEvent.changedTouches[0];
+					var changeTouch=e.originalEvent.targetTouches[1];
 					
 //					console.log('gesture id:'+touch.identifier+',change id:'+changeTouch.identifier);
 					
