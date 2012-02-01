@@ -72,9 +72,10 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					$(element).css({
 						'-webkit-transform':'scale('+image.scale+') '+
 						'rotate('+image.rotation+'deg)'+
-						'translate3d(' + originX + 'px,' + originY
+						'translate3d(' + (-originX/2) + 'px,' + (-originY/2)
 								+ 'px,0)',
-						'-webkit-transform-origin':originX+'px '+originY+'px',
+//						'-webkit-transform-origin':'left '+originX+'px top '+originY+'px',
+//						'-webkit-transform-origin':'left top',
 					});
 				}
 				
