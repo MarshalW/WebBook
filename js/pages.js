@@ -48,11 +48,18 @@ var Pages = function(size, index) {
 							- pages.lastX;
 					pages.moveX += e.originalEvent.targetTouches[0].pageX
 							- pages.lastX;
-					$(pages).css(
-							'-webkit-transform',
-							'translate3d('
-									+ (pages.moveX + pages.width
-											* (-pages.currentIndex)) + 'px,0,0)');
+//					$(pages).css(
+//							'-webkit-transform',
+//							'translate3d('
+//									+ (pages.moveX + pages.width
+//											* (-pages.currentIndex)) + 'px,0,0)');
+					
+					$(pages).css({
+						'-webkit-transform':'translate3d('
+								+ (pages.moveX + pages.width* (-pages.currentIndex)) 
+								+ 'px,0,0)',
+						'-webkit-transition-duration' : '0s',
+					});
 
 					pages.lastX = e.originalEvent.targetTouches[0].pageX;
 				}
