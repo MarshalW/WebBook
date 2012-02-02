@@ -4,36 +4,84 @@
  * @param imageName
  * @param offsetX
  * @param offsetY
+ * TODO: 做了部分重构，封装了元素的放大和缩小，但是有一些状态值还很零散，看起来很混乱，等有时间做进一步重构。
  */
 function createPartImageContainer(element,imageName,offsetX,offsetY){
 	//设置偏移量默认值
 	offsetX=offsetX||0,offsetY=offsetY||0;
-	//创建嵌套元素，用于装载图片，暂时没有其他用处
-	var innerElement=$('<div></div>').appendTo(element).css({
-		'position':'absolute',
-		'height':element.height(),
-		'width':element.width(),
-	});
+	var elementLeft=element.position().left,elementTop=element.position().top;
+
 	
 	//创建图片对象
 	var image=new Image();
+	var width=1024;
 	var height=768;
-	var elementHeight=innerElement.height();
+	var elementHeight=element.height();
 	
 	image.src='images/'+imageName;
-	innerElement.append(image);
+	element.append(image);
 	$(image).css('position','absolute');
 	
 	//图片加载成功后处理
 	$(image).on('load',function(){
 		//设置图片初始偏移量
 		$(image).css({
-			'top':-offsetX+'px',
-			'left':-offsetY+'px',
+			'-webkit-transform':'translate3d('+(-offsetX)+'px,'+(-offsetY)+'px,0)',
 		});
 		
 		image.moveX=0,image.moveY=0;
 		image.lastX=0,image.lastY=0;
+		
+		element[0].doScale=function(isScale){
+			element[0].scale=element[0].scale||false;
+			
+			if(typeof(isScale)=='undefined'){
+				element[0].scale=!element[0].scale;
+			}else{
+				element[0].scale=isScale;
+			}
+			
+			if(element[0].scale){
+				console.log('scale');
+				element.css({
+					'-webkit-transition-duration' : '0.5s',
+					'height':height+'px',
+					'-webkit-transform':'rotate(0) translate3d('+(-elementLeft)+'px,'+(-elementTop)+'px,0)',
+				});
+			}else{
+				element.css({
+					'-webkit-transition-duration' : '0.5s',
+					'height':elementHeight+'px',
+					'-webkit-transform':'rotate(0) translate3d(0,0,0)',
+				});
+			}
+			image.doScale(element[0].scale);
+		};
+		
+		image.doScale=function(isScale){
+			//处理偏移量，主要是针对大于屏幕的图，只看其中一部分，这样要保持偏移量为左上定点的取景框
+			var originX=0,originY=0;
+			
+			if(image.width>width+offsetX){
+				originX=offsetX;
+			}
+			
+			if(image.height>height+offsetY){
+				originX=offsetY;
+			}
+			
+			if(isScale){
+				$(image).css({
+					'-webkit-transition-duration' : '0.5s',
+					'-webkit-transform':'translate3d(-'+originX+'px,-'+originY+'px,0)',
+				});
+			}else{
+				$(image).css({
+					'-webkit-transition-duration' : '0.5s',
+					'-webkit-transform':'translate3d('+(-offsetX)+'px,'+(-offsetY)+'px,0)',
+				});
+			}
+		};
 		
 		element.on('touchstart touchmove touchend',function(e){
 			e.preventDefault();
@@ -57,8 +105,6 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					}
 				}
 				
-				
-				
 				//执行多点移动等交互
 				if(e.originalEvent.targetTouches.length>=2){
 					e.stopPropagation();//禁止翻页
@@ -69,10 +115,6 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 					//取得2点的中点坐标
 					var originX=Math.min(touch1.pageX,touch2.pageX)+Math.abs(touch1.pageX-touch2.pageX);
 					var originY=Math.min(touch1.pageY,touch2.pageY)+Math.abs(touch1.pageY-touch2.pageY);
-					
-//					var originX=touch1.pageX,originY=touch2.pageX;
-					
-//					console.log('origin:'+originX+','+originY);
 					
 					if(image.lastX!=0){
 						image.moveX+=originX-image.lastX;
@@ -86,9 +128,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 						'rotate('+image.rotation+'deg)'
 						+'translate3d(' + image.moveX/image.scale + 'px,' + image.moveY/image.scale
 								+ 'px,0)',
-//						'-webkit-transform-origin':'left '+originX/image.scale+'px top '+originY/image.scale+'px',
 						'-webkit-transition-duration' : '0s',
-//						'-webkit-transform-origin':'left top',
 					});
 					
 					image.lastX=originX,image.lastY=originY;
@@ -102,27 +142,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				}
 				
 				if(!image.moved){
-					if(!image.triggered){
-						element.css({
-							'-webkit-transition-duration' : '0.5s',
-							'height':height+'px',
-						});
-						$(image).css({
-							'-webkit-transition-duration' : '0.5s',
-							'top':0+'px',
-							'left':0+'px',
-						});
-					}else{
-						element.css({
-							'-webkit-transition-duration' : '0.5s',
-							'height':elementHeight+'px',
-						});
-						$(image).css({
-							'-webkit-transition-duration' : '0.5s',
-							'top':-offsetX+'px',
-							'left':-offsetY+'px',
-						});
-					}
+					element[0].doScale();
 					image.triggered=!image.triggered;
 				}
 			}
@@ -144,28 +164,10 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				element.toggleClass('boxShadow');
 				
 				if(image.scale>1.2){//放大
-					element.css({
-						'-webkit-transition-duration' : '0.5s',
-						'-webkit-transform':'rotate(0)',
-						'height':height+'px',
-					});
-					$(image).css({
-						'-webkit-transition-duration' : '0.5s',
-						'top':0+'px',
-						'left':0+'px',
-					});
+					element[0].doScale(true);
 					image.triggered=true;
 				}else{//还原
-					element.css({
-						'-webkit-transition-duration' : '0.5s',
-						'-webkit-transform':'rotate(0)',
-						'height':elementHeight+'px',
-					});
-					$(image).css({
-						'-webkit-transition-duration' : '0.5s',
-						'top':-offsetX+'px',
-						'left':-offsetY+'px',
-					});
+					element[0].doScale(false);
 					image.triggered=false;
 				}
 				
