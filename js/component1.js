@@ -17,6 +17,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 	var width=1024;
 	var height=768;
 	var elementHeight=element.height();
+	var elementWidth=element.width();
 	
 	image.src='images/'+imageName;
 	element.append(image);
@@ -32,6 +33,7 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 		image.moveX=0,image.moveY=0;
 		image.lastX=0,image.lastY=0;
 		
+		//执行元素放大缩小的方法
 		element[0].doScale=function(isScale){
 			element[0].scale=element[0].scale||false;
 			
@@ -46,12 +48,14 @@ function createPartImageContainer(element,imageName,offsetX,offsetY){
 				element.css({
 					'-webkit-transition-duration' : '0.5s',
 					'height':height+'px',
+					'width':width+'px',
 					'-webkit-transform':'rotate(0) translate3d('+(-elementLeft)+'px,'+(-elementTop)+'px,0)',
 				});
 			}else{
 				element.css({
 					'-webkit-transition-duration' : '0.5s',
 					'height':elementHeight+'px',
+					'width':elementWidth+'px',
 					'-webkit-transform':'rotate(0) translate3d(0,0,0)',
 				});
 			}
